@@ -1,0 +1,24 @@
+Private Sub btn오름_Click()
+
+    Dim i As Long, j As Long
+    Dim 임시 As Variant
+
+    With lst신청자
+        
+        For i = 0 To .ListCount - 2
+            
+            For j = i + 1 To .ListCount - 1
+                
+                If .List(i) > .List(j) Then
+                    임시 = .List(i)
+                    .List(i) = .List(j)
+                    .List(j) = 임시
+                End If
+            
+            Next j
+        
+        Next i
+    
+    End With
+
+End Sub

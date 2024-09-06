@@ -1,0 +1,30 @@
+Sub 확인란_추가()
+
+    Dim 입력범위 As Range, 셀 As Range
+    Dim 확인란 As CheckBox
+    Dim i As Integer
+    
+    Set 입력범위 = Range("D3").Resize(10, 5)
+    
+    For Each 셀 In 입력범위
+    
+        With 셀
+            
+            Set 확인란 = ActiveSheet.CheckBoxes.Add(Top:=.Top, _
+                                                    Left:=.Left + (.Width / 3), _
+                                                    Width:=.Width * (2 / 3), _
+                                                    Height:=.Height)
+
+        End With
+
+        With 확인란
+                
+            .Name = "확인란_" & Format(셀.Row - 2, "00") & "_" & 셀.Column - 3
+            .LinkedCell = 셀.Address
+            .Caption = "  체크"
+            
+        End With
+    
+    Next 셀
+    
+End Sub

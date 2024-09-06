@@ -1,0 +1,43 @@
+Private Sub UserForm_Initialize()
+
+    Dim 직원 As Range, 셀 As Range
+    Dim c As Integer, r As Integer
+    
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+
+    With lvw직원
+    
+        .View = lvwReport
+        .AllowColumnReorder = True
+        .FullRowSelect = True
+        .Gridlines = True
+        .HideSelection = False
+        .LabelEdit = lvwManual
+    
+    End With
+
+    With lvw직원
+    
+        .ColumnHeaders.Add Key:="사번", Text:="사번", Width:=35, Alignment:=lvwColumnLeft
+        .ColumnHeaders.Add Key:="이름", Text:="이름", Width:=45, Alignment:=lvwColumnCenter
+        .ColumnHeaders.Add Key:="직위", Text:="직위", Width:=35, Alignment:=lvwColumnCenter
+        .ColumnHeaders.Add Key:="입사일", Text:="입사일", Width:=70, Alignment:=lvwColumnCenter
+                
+    End With
+
+    With lvw직원
+    
+        For Each 셀 In 직원
+        
+            .ListItems.Add Text:=셀.Offset(, -1).Value
+            r = r + 1
+        
+            For c = 1 To 3
+                .ListItems(r).SubItems(c) = 셀.Offset(, c - 1)
+            Next
+        
+        Next
+    
+    End With
+
+End Sub

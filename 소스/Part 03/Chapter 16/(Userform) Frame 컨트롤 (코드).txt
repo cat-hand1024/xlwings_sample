@@ -1,0 +1,22 @@
+Sub 선택항목(프레임 As MSForms.Frame, 입력 As Range)
+
+    Dim 컨트롤 As Control
+    
+    입력.ClearContents
+        
+    For Each 컨트롤 In 프레임.Controls
+    
+        If TypeName(컨트롤) = "OptionButton" Then
+        
+            If 컨트롤.Value = True Then
+
+                입력.Value = 컨트롤.Caption
+                Exit For
+
+            End If
+        
+        End If
+    
+    Next
+
+End Sub

@@ -1,0 +1,43 @@
+Private Sub btn참석_Click()
+
+    목록이동 lst신청자, lst참석자, 전체이동:=False
+    
+    lbl신청자.Caption = "개수 : " & lst신청자.ListCount
+    lbl참석자.Caption = "개수 : " & lst참석자.ListCount
+
+End Sub
+
+Private Sub btn모두참석_Click()
+
+    If lst신청자.ListCount > 0 Then
+
+        목록이동 lst신청자, lst참석자, 전체이동:=True
+        
+        lbl신청자.Caption = "개수 : " & lst신청자.ListCount
+        lbl참석자.Caption = "개수 : " & lst참석자.ListCount
+
+    End If
+
+End Sub
+
+Private Sub btn취소_Click()
+
+    목록이동 lst참석자, lst신청자, 전체이동:=False
+    
+    lbl신청자.Caption = "개수 : " & lst신청자.ListCount
+    lbl참석자.Caption = "개수 : " & lst참석자.ListCount
+
+End Sub
+
+Private Sub btn모두취소_Click()
+
+    If lst참석자.ListCount > 0 Then
+
+        목록이동 lst참석자, lst신청자, 전체이동:=True
+        
+        lbl신청자.Caption = "개수 : " & lst신청자.ListCount
+        lbl참석자.Caption = "개수 : " & lst참석자.ListCount
+
+    End If
+
+End Sub

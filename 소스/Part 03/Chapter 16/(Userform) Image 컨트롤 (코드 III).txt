@@ -1,0 +1,15 @@
+Private Sub btn선택해제_Click()
+
+    Dim 경로 As String
+    Dim 파일 As String
+
+    경로 = ThisWorkbook.Path & "\Image\"
+    파일 = "Default.jpg"
+
+    With lst직원
+        .Selected(.ListIndex) = False
+    End With
+
+    img사진.Picture = LoadPicture(Filename:=경로 & 파일)
+
+End Sub

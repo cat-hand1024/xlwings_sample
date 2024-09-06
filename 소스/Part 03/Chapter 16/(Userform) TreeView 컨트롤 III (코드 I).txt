@@ -1,0 +1,15 @@
+Private Sub UserForm_Activate()
+
+    If Not tvw직원.SelectedItem.Parent Is Nothing Then
+
+        lbl직원수.Caption = "직원 수 : " & tvw직원.SelectedItem.Parent.Children
+
+    End If
+
+    If Not tvw직원.SelectedItem.Child Is Nothing Then
+
+        lbl직원수.Caption = "직원 수 : " & tvw직원.SelectedItem.Children
+
+    End If
+
+End Sub

@@ -1,0 +1,21 @@
+Sub 성별확인()
+    
+    Dim 질문 As String
+    Dim 결과 As String
+    
+    질문 = "당신은 남자입니까?"
+    결과 = "당신의 성별 : "
+    
+    If MsgBox(질문, vbQuestion + vbYesNo, "성별 확인") = vbYes Then
+    
+        결과 = 결과 & "남성"
+    
+    Else
+    
+        결과 = 결과 & "여성"
+    
+    End If
+    
+    MsgBox 결과, vbInformation, "선택"
+
+End Sub

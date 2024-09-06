@@ -1,0 +1,11 @@
+Function IsSheet(시트명 As String) As Boolean
+
+    Dim 시트 As Worksheet
+    
+    On Error Resume Next
+        
+        Set 시트 = Worksheets(시트명)
+        
+        IsSheet = (Err.Number = 0)
+
+End Function

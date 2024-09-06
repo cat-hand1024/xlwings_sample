@@ -1,0 +1,49 @@
+Sub 차트생성(선택직원 As String)
+
+    Dim 직원 As Range, c As Integer
+    Dim 원본범위 As Range
+    Dim 경로 As String
+    Dim 파일 As String
+
+    Set 직원 = Range("C2", Range("C2").End(xlToRight))
+    c = WorksheetFunction.Match(선택직원, 직원, 0)
+            
+    경로 = ThisWorkbook.Path & "\"
+    파일 = "chart.gif"
+            
+    Set 원본범위 = Range("B2").CurrentRegion.Columns(1)
+    Set 원본범위 = Union(원본범위, 원본범위.Offset(, c))
+
+    ActiveSheet.Shapes.AddChart(Width:=300, Height:=200).Select
+    
+    With ActiveChart
+        
+        .SetSourceData Source:=원본범위
+        .ChartType = xlColumnClustered
+        
+        With WorksheetFunction
+            ActiveChart.Axes(xlValue).MaximumScale = .Ceiling(.Max(Range("B2").CurrentRegion), 1000)
+        End With
+        
+        .ChartStyle = 208
+        .ChartGroups(1).GapWidth = 80
+        .SetElement Element:=msoElementDataLabelOutSideEnd
+        
+        .Legend.Delete
+        
+        With .ChartTitle
+        
+            .Text = "[" & 선택직원 & "] 판매실적"
+            .Format.TextFrame2.TextRange.Characters.Font.Size = 14
+            
+        End With
+    
+        If Dir(경로 & 파일) <> "" Then Kill PathName:=경로 & 파일
+    
+        .Export Filename:=경로 & 파일, FilterName:="GIF"
+        
+        .Parent.Delete
+            
+    End With
+    
+End Sub

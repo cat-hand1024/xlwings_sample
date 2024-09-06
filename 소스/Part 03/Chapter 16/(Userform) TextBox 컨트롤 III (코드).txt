@@ -1,0 +1,15 @@
+Private Sub btn로그인_Click()
+
+    If txt암호.Value = "1234" Then
+    
+        MsgBox "암호가 일치합니다."
+        Unload Me
+                
+    Else
+    
+        txt암호.Value = Empty
+        txt암호.SetFocus
+    
+    End If
+
+End Sub

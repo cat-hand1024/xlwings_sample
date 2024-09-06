@@ -1,0 +1,17 @@
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+
+    Dim 날짜입력 As Range
+    
+    Set 날짜입력 = Range("E4", Cells(Rows.Count, "B").End(xlUp).Offset(, 3))
+    
+    If Not Intersect(Target, 날짜입력) Is Nothing Then
+    
+        If Len(Target.Value) = 0 Then
+            
+            Target.Value = Now
+            
+        End If
+        
+    End If
+
+End Sub

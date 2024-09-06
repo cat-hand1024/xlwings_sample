@@ -1,0 +1,21 @@
+Private Sub btn저장_Click()
+
+    Dim 사번 As Range
+    Dim 직원레코드 As Range
+    
+    Set 사번 = Range("B3", Cells(Rows.Count, "B").End(xlUp))
+    Set 직원레코드 = 사번.Find(What:=txt사번.Value).Resize(1, 7)
+    
+    With 직원레코드
+        .Cells(1).Value = Int(txt사번.Value)
+        .Cells(2).Value = txt이름.Value
+        .Cells(3).Value = cmb직위.Value
+        .Cells(4).Value = txt주민등록.Value
+        .Cells(5).Value = DateValue(txt생년월일.Value)
+        .Cells(6).Value = Int(txt나이.Value)
+        .Cells(7).Value = IIf(opt남.Value = True, "남", "여")
+    End With
+       
+    Unload Me
+
+End Sub

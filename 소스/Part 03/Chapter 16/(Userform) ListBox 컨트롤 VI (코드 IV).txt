@@ -1,0 +1,23 @@
+Private Sub btn아래_Click()
+
+    Dim i As Integer
+    Dim 선택행 As Integer
+
+    With lst직원
+
+        선택행 = .ListIndex
+
+        .AddItem Item:=.List(.ListIndex), VarIndex:=선택행 + 2
+
+        For i = 1 To .ColumnCount - 1
+
+            .List(선택행 + 2, i) = .List(.ListIndex, i)
+
+        Next i
+
+        .RemoveItem .ListIndex
+        .ListIndex = 선택행 + 1
+
+    End With
+
+End Sub

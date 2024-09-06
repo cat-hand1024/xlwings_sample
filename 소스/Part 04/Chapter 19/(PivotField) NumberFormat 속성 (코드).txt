@@ -1,0 +1,25 @@
+Private Sub Worksheet_PivotTableUpdate(ByVal Target As PivotTable)
+
+    Dim 피벗 As PivotTable
+    Dim 필드 As PivotField
+    Dim 열머리글 As Range
+    
+    Application.EnableEvents = False
+
+        Set 피벗 = Target
+
+        Set 열머리글 = Sheets("sample").Range("A1").CurrentRegion.Rows(1)
+
+        For Each 필드 In 피벗.DataFields
+
+            With 열머리글.Find(What:=필드.SourceName)
+
+                필드.NumberFormat = .Offset(1).NumberFormat
+            
+            End With
+            
+        Next
+
+    Application.EnableEvents = True
+
+End Sub

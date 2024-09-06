@@ -1,0 +1,28 @@
+Private Sub Workbook_Open()
+
+    Dim 단축메뉴 As CommandBar
+    Dim 새명령 As CommandBarControl
+ 
+    On Error Resume Next
+
+        Application.OnKey "^+{D}", "달력표시"
+
+        Set 단축메뉴 = Application.CommandBars("Cell")
+        
+        With 단축메뉴
+            
+            .Reset
+            
+            Set 새명령 = .Controls.Add(Type:=msoControlButton, Before:=1)
+        
+        End With
+ 
+        With 새명령
+            .Caption = "날짜 선택(&D)..."
+            .OnAction = "달력표시"
+            .FaceId = 125
+        End With
+        
+        단축메뉴.Controls(2).BeginGroup = True
+
+End Sub

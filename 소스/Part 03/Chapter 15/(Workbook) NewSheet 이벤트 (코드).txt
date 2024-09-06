@@ -1,0 +1,26 @@
+Private Sub Workbook_NewSheet(ByVal Sh As Object)
+
+    Dim 이전시트 As Worksheet
+    Dim i As Integer
+    
+    Sh.Move after:=Sheets(Sheets.Count)
+    
+    Set 이전시트 = Sh.Previous
+    
+    이전시트.Cells.Copy Sh.Cells(1)
+    
+    Range("B8:K13").ClearContents
+    
+    If InStr(1, 이전시트.Name, "_") > 0 Then
+    
+        i = Mid(이전시트.Name, InStrRev(이전시트.Name, "_") + 1) + 1
+        
+    Else
+    
+        i = 1
+        
+    End If
+    
+    Sh.Name = "견적서_" & i
+
+End Sub

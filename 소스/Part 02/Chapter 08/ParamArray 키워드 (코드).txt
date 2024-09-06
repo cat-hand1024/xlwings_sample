@@ -1,0 +1,27 @@
+Function 합계(ParamArray 숫자() As Variant) As Double
+
+    Dim 값 As Variant
+    Dim 누계 As Double
+    Dim 셀 As Range
+    
+    For Each 값 In 숫자
+    
+        If TypeName(값) = "Range" Then
+
+            For Each 셀 In 값
+
+                If IsNumeric(셀.Value) Then 누계 = 누계 + 셀.Value
+
+            Next
+
+        Else
+
+            If IsNumeric(값) Then 누계 = 누계 + 값
+
+        End If
+        
+    Next
+    
+    합계 = 누계
+
+End Function

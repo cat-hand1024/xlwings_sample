@@ -1,0 +1,117 @@
+Option Explicit
+
+Sub 직원현황보고서()
+
+    Dim 피벗캐시 As PivotCache
+    Dim 피벗 As PivotTable
+    Dim 원본범위 As Range
+    Dim 생성위치 As Range
+    Dim 이름 As String
+    Dim 행머리글 As Variant
+    Dim i As Integer, j As Integer
+    Dim 행 As Integer, 열 As Integer
+    
+    이름 = "피벗보고서"
+    
+    Set 원본범위 = Range("A2").CurrentRegion
+    행머리글 = Array("직위", "근속년수", "연령대", "성별")
+    
+    Set 피벗캐시 = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, _
+                                                   SourceData:=원본범위)
+    
+    On Error Resume Next
+        Application.DisplayAlerts = False
+            Worksheets(이름).Delete
+        Application.DisplayAlerts = True
+    On Error GoTo 0
+    
+    Worksheets.Add.Name = 이름
+    
+    For i = 1 To 4
+    
+        행 = Int((i - 1) / 2) * 10
+        열 = ((i - 1) Mod 2) * 5
+
+        Set 생성위치 = Range("A3").Offset(행, 열)
+
+        With 생성위치.Offset(-1)
+            .Value = "직원 현황 (" & 행머리글(i - 1) & ")"
+            .Font.Size = 14
+            .Font.Bold = True
+        End With
+        
+        Set 피벗 = 피벗캐시.CreatePivotTable(TableDestination:=생성위치, _
+                                             TableName:=이름 & i)
+    
+    
+        With 피벗
+            
+            .HasAutoFormat = False
+        
+            .AddFields RowFields:=행머리글(i - 1)
+            
+            For j = 1 To 3
+            
+                .AddDataField Field:=.PivotFields("이름"), _
+                              Function:=xlCount
+                              
+            Next j
+            
+            .PivotFields("개수 : 이름").Caption = "인원수"
+            
+            With .PivotFields("개수 : 이름2")
+                .Caption = "비율"
+                .Calculation = xlPercentOfColumn
+                .NumberFormat = "0.0%"
+            End With
+            
+            With .PivotFields("개수 : 이름3")
+                .Caption = "순위"
+                .Calculation = xlRankDecending
+                .BaseField = 행머리글(i - 1)
+            End With
+            
+            With 생성위치
+                .Offset(1).Value = 행머리글(i - 1)
+                .Offset(, 1).Value = " "
+            End With
+            
+            Select Case i
+            
+                Case 1
+            
+                    With .PivotFields("직위")
+        
+                        .PivotItems("부장").Position = 1
+                        .PivotItems("차장").Position = 2
+                        .PivotItems("과장").Position = 3
+                        .PivotItems("대리").Position = 4
+                        .PivotItems("주임").Position = 5
+                        .PivotItems("사원").Position = 6
+        
+                    End With
+                    
+                Case 2
+                
+                    With .PivotFields("근속년수")
+        
+                        .PivotItems("10년 이상").Position = 1
+                        .PivotItems("6년~9년").Position = 2
+                        .PivotItems("3년~5년").Position = 3
+                        .PivotItems("3년 미만").Position = 4
+        
+                    End With
+                
+            End Select
+
+            .TableStyle2 = "PivotStyleMedium" & i + 1
+            .TableRange2.HorizontalAlignment = xlCenter
+            
+        End With
+    
+    Next i
+    
+    Columns("A:H").ColumnWidth = Columns("A:H").ColumnWidth * 1.2
+    Cells.RowHeight = 20
+    
+End Sub

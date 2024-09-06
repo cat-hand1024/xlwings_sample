@@ -1,0 +1,24 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim ¼¿ As Range
+    Dim ´ë»ó¹üÀ§ As Range
+    
+    Set ´ë»ó¹üÀ§ = Intersect(Target, Range("B3:E8"))
+    
+    If Not ´ë»ó¹üÀ§ Is Nothing Then
+    
+        For Each ¼¿ In ´ë»ó¹üÀ§
+            
+            If IsNumeric(¼¿.Value) Then
+                If ¼¿.Value - Int(¼¿.Value) > 0 Then
+                    ¼¿.NumberFormat = "#,##0.00"
+                Else
+                    ¼¿.NumberFormat = "#,###"
+                End If
+            End If
+        
+        Next
+
+    End If
+
+End Sub

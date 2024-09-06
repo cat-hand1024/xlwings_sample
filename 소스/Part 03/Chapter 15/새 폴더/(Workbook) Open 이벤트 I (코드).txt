@@ -1,0 +1,28 @@
+Private Sub Workbook_Open()
+
+    Dim 경로 As String
+    Dim 파일명 As String
+    Dim 관련파일 As Workbook
+    
+    경로 = ThisWorkbook.Path & "\"
+    파일명 = "관련 파일.xlsx"
+    
+    On Error Resume Next
+    
+        Set 관련파일 = Workbooks(파일명)
+
+        If Err.Number <> 0 Then
+            
+            If MsgBox("[" & 파일명 & "] 파일을 열까요?", vbYesNo) = vbYes Then
+            
+                Application.ScreenUpdating = False
+                    Workbooks.Open Filename:=경로 & 파일명
+                Application.ScreenUpdating = True
+                
+                ThisWorkbook.Activate
+            
+            End If
+            
+        End If
+
+End Sub

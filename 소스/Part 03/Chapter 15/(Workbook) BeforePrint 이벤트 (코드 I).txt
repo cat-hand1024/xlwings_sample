@@ -1,0 +1,22 @@
+Private Sub Workbook_BeforePrint(Cancel As Boolean)
+
+    Dim 가로구분선 As HPageBreak
+
+    Cells.FormatConditions.Delete
+
+    For Each 가로구분선 In ActiveSheet.HPageBreaks
+    
+        With 가로구분선.Location.Offset(-1).Columns("A:H")
+        
+            .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+            
+            With .FormatConditions(1).Borders(xlBottom)
+                .LineStyle = xlContinuous
+                .Weight = xlThin
+            End With
+            
+        End With
+        
+    Next
+    
+End Sub

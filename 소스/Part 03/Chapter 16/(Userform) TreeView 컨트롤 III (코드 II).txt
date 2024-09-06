@@ -1,0 +1,21 @@
+Private Sub tvw직원_NodeClick(ByVal Node As MSComctlLib.Node)
+
+    Dim 직원 As Range
+
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+
+    If Not Node.Parent Is Nothing Then
+
+        txt입사일.Value = 직원.Find(What:=Node.Text).Offset(, 2).Value
+        lbl직원수.Caption = "직원 수 : " & Node.Parent.Children
+        
+    End If
+    
+    If Not Node.Child Is Nothing Then
+    
+        txt입사일.Value = Empty
+        lbl직원수.Caption = "직원 수 : " & Node.Children
+    
+    End If
+
+End Sub

@@ -1,0 +1,14 @@
+Sub 파일확인()
+
+    Dim 파일 As Workbook
+
+    For Each 파일 In Workbooks
+        
+        If 파일.Name = "A.xlsx" Then
+            MsgBox "파일이 열려 있습니다."
+            Exit For
+        End If
+        
+    Next
+
+End Sub

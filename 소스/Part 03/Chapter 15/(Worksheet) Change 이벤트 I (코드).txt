@@ -1,0 +1,24 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim 분류 As Range, 셀 As Range
+    Dim 제품 As Range
+    
+    Set 분류 = Intersect(Target, Range("C5:C11"))
+
+    If Not 분류 Is Nothing Then
+    
+        For Each 셀 In 분류
+            
+            Set 제품 = 셀.Offset(, 1)
+            
+            If Len(제품.Value) > 0 Then
+            
+                제품.MergeArea.ClearContents
+    
+            End If
+            
+        Next
+        
+    End If
+
+End Sub

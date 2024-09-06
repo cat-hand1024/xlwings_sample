@@ -1,0 +1,21 @@
+Private Sub UserForm_Initialize()
+
+    Me.Caption = "직원 편집 폼"
+
+    txt사번.Enabled = False
+
+    With cmb직위
+        
+        .AddItem "부장"
+        .AddItem "차장"
+        .AddItem "과장"
+        .AddItem "대리"
+        .AddItem "주임"
+        .AddItem "사원"
+        
+        .ColumnWidths = .Width
+        .ListWidth = .Width
+
+    End With
+
+End Sub

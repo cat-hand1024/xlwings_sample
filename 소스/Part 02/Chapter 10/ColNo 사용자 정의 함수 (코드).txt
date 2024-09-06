@@ -1,0 +1,5 @@
+Function ColNo(열문자 As String) As Integer
+
+    ColNo = Cells(1, 열문자).Column
+
+End Function

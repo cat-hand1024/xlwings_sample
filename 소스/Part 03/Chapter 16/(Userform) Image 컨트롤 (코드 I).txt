@@ -1,0 +1,10 @@
+Private Sub UserForm_Initialize()
+
+    Dim 직원 As Range
+
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+
+    lst직원.List = 직원.Value
+    img사진.SpecialEffect = fmSpecialEffectSunken
+
+End Sub

@@ -1,0 +1,23 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    If IsUndo Then
+
+        Application.EnableEvents = False
+
+            Application.Undo
+
+        Application.EnableEvents = True
+
+    End If
+
+End Sub
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Dim 숫자범위 As Range
+
+    Set 숫자범위 = ActiveSheet.UsedRange.SpecialCells(xlCellTypeConstants, xlNumbers)
+
+    IsUndo = Not Intersect(Target, 숫자범위) Is Nothing
+
+End Sub

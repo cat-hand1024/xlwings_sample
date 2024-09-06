@@ -1,0 +1,30 @@
+Private Sub btn조회_Click()
+
+    Dim 검색항목 As ListItem
+    
+    If txt키워드.Value = "" Then
+    
+        txt키워드.SetFocus
+    
+    Else
+    
+        Set 검색항목 = lvw직원.FindItem(txt키워드.Value, 1)
+        
+        If 검색항목 Is Nothing Then
+    
+            lvw직원.SelectedItem.Selected = False
+            txt키워드.Value = ""
+            txt키워드.SetFocus
+            
+        Else
+        
+            With 검색항목
+                .Selected = True
+                .EnsureVisible
+            End With
+            
+        End If
+    
+    End If
+    
+End Sub

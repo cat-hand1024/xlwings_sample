@@ -1,0 +1,16 @@
+Private Sub btn선택_Click()
+
+    Dim 파일형식 As String
+    Dim 선택파일 As Variant
+
+    파일형식 = "그림 파일(*.jpg;*.png), *.jpg;*.png"
+
+    선택파일 = Application.GetOpenFilename(FileFilter:=파일형식, Title:="그림 선택")
+
+    If 선택파일 <> False Then
+    
+        txt파일 = 선택파일
+    
+    End If
+
+End Sub

@@ -1,0 +1,31 @@
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+
+    Dim 표 As Range
+    Dim 머리글 As Range
+    Dim 정렬방법 As Integer
+
+    If IsEmpty(Target) Then Exit Sub
+
+    Set 표 = Target.CurrentRegion
+    
+        If 표.Rows.Count = 1 Then Exit Sub
+    
+    Set 머리글 = Cells(표.Cells(1).Row, Target.Column)
+    
+    Select Case True
+    
+        Case IsNumeric(머리글.Offset(1)), IsDate(머리글.Offset(1))
+            
+            정렬방법 = xlDescending
+            
+        Case Else
+        
+            정렬방법 = xlAscending
+            
+    End Select
+    
+    표.Sort Key1:=머리글, Order1:=정렬방법, Header:=xlYes
+        
+    Cancel = True
+
+End Sub

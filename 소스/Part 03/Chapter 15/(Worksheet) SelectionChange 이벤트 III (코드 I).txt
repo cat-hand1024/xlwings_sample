@@ -1,0 +1,21 @@
+Function 목록만들기(유효성검사 As Range) As String
+
+    Dim 신청자 As Range
+    Dim 셀 As Range
+    Dim 목록 As String
+
+    Set 신청자 = Range("E6", Range("E6").End(xlDown))
+
+    For Each 셀 In 신청자
+
+        If 유효성검사.Find(What:=셀.Value) Is Nothing Then
+
+            목록 = 목록 & IIf(Len(목록) > 0, ",", "") & 셀.Value
+
+        End If
+
+    Next
+
+    목록만들기 = 목록
+
+End Function

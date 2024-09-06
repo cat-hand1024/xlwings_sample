@@ -1,0 +1,16 @@
+Private 폼이름 As String
+
+Private Sub UserForm_Initialize()
+
+    폼이름 = "마법사 폼"
+   
+    With MultiPage1
+        .Value = 0
+        Me.Caption = 폼이름 & " - 3단계 중 1단계 [그림 선택]"
+    End With
+   
+    btn이전.Enabled = False
+    btn다음.Enabled = True
+    btn마침.Enabled = False
+
+End Sub

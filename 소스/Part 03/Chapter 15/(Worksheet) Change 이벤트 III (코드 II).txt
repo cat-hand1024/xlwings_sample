@@ -1,0 +1,19 @@
+Sub 누계히스토리(값 As Double)
+
+    Dim 기록위치 As Range
+
+    Set 기록위치 = Cells(Rows.Count, "G").End(xlUp).Offset(1)
+
+    With 기록위치
+        .Value = 값
+        .Offset(, 1).Value = Now
+        .Resize(, 2).BorderAround LineStyle:=xlContinuous
+    End With
+
+    If 기록위치.CurrentRegion.Rows.Count > 11 Then
+
+        기록위치.End(xlUp).Offset(1).Resize(, 2).Delete Shift:=xlUp
+
+    End If
+
+End Sub

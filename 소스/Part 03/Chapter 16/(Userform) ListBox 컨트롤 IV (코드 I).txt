@@ -1,0 +1,17 @@
+Private Sub UserForm_Initialize()
+
+    Dim 신청자 As Range
+
+    Set 신청자 = Range("B3", Cells(Rows.Count, "B").End(xlUp))
+
+    With lst신청자
+        .List = 신청자.Value
+        .MultiSelect = fmMultiSelectMulti
+    
+        lbl신청자.Caption = "개수 : " & .ListCount
+    End With
+    
+    lbl참석자.Caption = ""
+    lst참석자.MultiSelect = fmMultiSelectMulti
+    
+End Sub

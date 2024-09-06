@@ -1,0 +1,21 @@
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+
+    Dim 새이름 As String
+    Dim 경로 As String
+    Dim 파일이름 As String
+    Dim 확장자 As String
+    Dim 백업일 As String
+    
+    경로 = ThisWorkbook.Path & "\"
+    파일이름 = ThisWorkbook.Name
+    
+    확장자 = Mid(파일이름, InStrRev(파일이름, "."))
+    파일이름 = Left(파일이름, InStrRev(파일이름, ".") - 1)
+    
+    백업일 = Format(Now, "yymmddhhnnss")
+    
+    새이름 = 파일이름 & " - " & 백업일 & 확장자
+    
+    ThisWorkbook.SaveCopyAs Filename:=경로 & 새이름
+    
+End Sub

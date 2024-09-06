@@ -1,0 +1,27 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Dim 유효성검사 As Range
+    
+    Application.EnableEvents = False
+    
+        With ActiveSheet.UsedRange
+            
+            Set 유효성검사 = .SpecialCells(Type:=xlCellTypeAllValidation)
+            
+        End With
+
+    Application.EnableEvents = True
+
+    If 유효성검사 Is Nothing Then Exit Sub
+    
+    If Not Intersect(Target, 유효성검사) Is Nothing Then
+    
+        If Application.CutCopyMode <> False Then
+        
+            Application.CutCopyMode = False
+            
+        End If
+
+    End If
+
+End Sub

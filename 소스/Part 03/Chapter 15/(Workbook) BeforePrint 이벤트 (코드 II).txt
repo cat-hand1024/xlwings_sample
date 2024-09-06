@@ -1,0 +1,14 @@
+Sub 테두리서식(범위 As Range, 테두리 As Integer)
+
+    With 범위
+
+        .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+
+        With .FormatConditions(1).Borders(테두리)
+            .LineStyle = xlContinuous
+            .Weight = xlThin
+        End With
+
+    End With
+
+End Sub

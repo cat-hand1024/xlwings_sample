@@ -1,0 +1,14 @@
+Private Sub cmb직원_Change()
+
+    If cmb직원.MatchFound = True Then
+    
+        차트생성 cmb직원.Value
+        img차트.Picture = LoadPicture(Filename:=ThisWorkbook.Path & "\chart.gif")
+    
+    Else
+    
+        img차트.Picture = LoadPicture("")
+        
+    End If
+
+End Sub

@@ -1,0 +1,47 @@
+Private Sub MultiPage1_Change()
+
+    Dim 단계별제목 As String
+
+    Select Case MultiPage1.Value
+
+        Case 0
+
+            btn이전.Enabled = False
+            btn다음.Enabled = True
+            btn마침.Enabled = False
+
+            단계별제목 = "그림 선택"
+
+        Case 1
+
+            btn이전.Enabled = True
+            btn다음.Enabled = True
+            btn마침.Enabled = False
+
+            If TypeName(Selection) = "Range" Then
+            
+                ref범위.Value = Selection.Address
+            
+            End If
+
+            단계별제목 = "범위 선택"
+
+        Case 2
+
+            btn이전.Enabled = True
+            btn다음.Enabled = False
+            btn마침.Enabled = True
+
+            단계별제목 = "옵션 선택"
+
+    End Select
+
+    With MultiPage1
+
+        Me.Caption = 폼이름 & " - " & _
+                     .Pages.Count & "단계 중 " & .Value + 1 & "단계 " & _
+                     "[" & 단계별제목 & "]"
+
+    End With
+
+End Sub

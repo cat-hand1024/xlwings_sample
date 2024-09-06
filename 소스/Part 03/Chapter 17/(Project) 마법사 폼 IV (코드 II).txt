@@ -1,0 +1,44 @@
+Private Sub btn마침_Click()
+
+    Dim 삽입범위 As Range
+    Dim 그림 As Picture
+
+    Set 삽입범위 = Range(ref범위.Value)
+
+    If 삽입범위.Count = 1 Then
+    
+        If 삽입범위.MergeCells Then
+    
+            If 삽입범위.Address <> 삽입범위.MergeArea.Address Then
+    
+                Set 삽입범위 = 삽입범위.MergeArea
+            
+            End If
+        
+        End If
+        
+    End If
+
+    Set 그림 = ActiveSheet.Pictures.Insert(txt파일.Value)
+    
+    If chk그림 = True Then
+                
+        그림.Copy
+        ActiveSheet.Pictures.Paste.Select
+        그림.Delete
+    
+        Set 그림 = Selection
+    
+    End If
+    
+    With 그림
+        .ShapeRange.LockAspectRatio = msoFalse
+        .Top = 삽입범위.Top
+        .Left = 삽입범위.Left
+        .Height = 삽입범위.Height
+        .Width = 삽입범위.Width
+    End With
+    
+    Unload Me
+
+End Sub

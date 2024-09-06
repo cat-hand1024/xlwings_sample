@@ -1,0 +1,42 @@
+Sub 목록이동(원본목록 As MSForms.ListBox, _
+             이동목록 As MSForms.ListBox, _
+             Optional 전체이동 As Boolean = True)
+
+    Dim i As Integer
+    Dim 이동행() As Integer, 건수 As Integer
+    
+    If 전체이동 = True Then
+        
+        For i = 0 To 원본목록.ListCount - 1
+            이동목록.AddItem 원본목록.List(i, 0)
+        Next
+        
+        원본목록.Clear
+                
+    Else
+    
+        For i = 0 To 원본목록.ListCount - 1
+        
+            If 원본목록.Selected(i) = True Then
+                
+                이동목록.AddItem 원본목록.List(i, 0)
+                원본목록.Selected(i) = False
+                ReDim Preserve 이동행(건수)
+                이동행(건수) = i
+                건수 = 건수 + 1
+            
+            End If
+        
+        Next
+        
+        If 건수 > 0 Then
+            
+            For i = UBound(이동행) To 0 Step -1
+                원본목록.RemoveItem 이동행(i)
+            Next
+        
+        End If
+    
+    End If
+    
+End Sub

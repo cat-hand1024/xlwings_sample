@@ -1,0 +1,29 @@
+Sub 파일선택()
+    
+    Dim 현재폴더 As String
+    Dim 선택폴더 As String
+    Dim 선택파일 As Variant
+    Dim 파일형식 As String
+    
+    현재폴더 = CurDir
+    선택폴더 = "C:\작업 폴더\"
+    파일형식 = "엑셀 파일 (*.xls*), *.xls*"
+    
+    ChDrive 선택폴더
+    ChDir 선택폴더
+    선택파일 = Application.GetOpenFilename(FileFilter:=파일형식, Title:="작업 파일 선택")
+
+    If 선택파일 <> False Then
+        
+        Workbooks.Open Filename:=선택파일
+        
+    Else
+    
+        MsgBox "파일을 선택하지 않았습니다."
+    
+    End If
+
+    ChDrive 현재폴더
+    ChDir 현재폴더
+    
+End Sub

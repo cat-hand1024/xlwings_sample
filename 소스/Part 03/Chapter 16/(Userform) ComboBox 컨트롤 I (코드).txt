@@ -1,0 +1,12 @@
+Private Sub UserForm_Initialize()
+
+    With cmb직위
+        .AddItem "부장"
+        .AddItem "차장"
+        .AddItem "과장"
+        .AddItem "대리"
+        .AddItem "주임"
+        .AddItem "사원"
+    End With
+
+End Sub

@@ -1,0 +1,21 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim 보호 As Range
+    
+    On Error GoTo Err_Handler
+    
+    Set 보호 = Range("C3", Range("C3").End(xlDown).End(xlToRight))
+    
+    If Not Intersect(Target, 보호) Is Nothing Then
+        
+        Application.EnableEvents = False
+        
+            Application.Undo
+    
+    End If
+    
+Err_Handler:
+    
+    Application.EnableEvents = True
+
+End Sub

@@ -1,0 +1,50 @@
+﻿Private Sub cmb부서_AfterUpdate()
+
+    Dim 부서 As Range
+    Dim 찾은셀 As Range
+    Dim 첫번째셀주소 As String
+    Dim 직위 As Range
+    Dim 고유항목 As New Collection, 항목 As Variant
+    
+    If Len(cmb부서.Value) > 0 Then
+    
+        Set 부서 = Range("D2", Cells(Rows.Count, "D").End(xlUp))
+    
+        On Error Resume Next
+        
+            Set 찾은셀 = 부서.Find(What:=ComboBox1.Value)
+            
+            If Not 찾은셀 Is Nothing Then
+            
+                첫번째셀주소 = 찾은셀.Address
+                
+                Do
+                
+                    Set 직위 = 찾은셀.Offset(, 1)
+                
+                    고유항목.Add Item:=직위.Value, Key:=직위.Value
+            
+                    Set 찾은셀 = 부서.FindNext(찾은셀)
+                
+                Loop Until 찾은셀.Address = 첫번째셀주소
+    
+            End If
+    
+        On Error GoTo 0
+    
+        With cmb직위
+            
+            For Each 항목 In 고유항목
+            
+                .AddItem 항목
+            
+            Next
+        
+            .ColumnWidths = .Width
+            .ListWidth = .Width
+        
+        End With
+
+    End If
+
+End Sub

@@ -1,0 +1,39 @@
+Sub 코드백업()
+
+    Dim 프로젝트 As VBProject
+    Dim 콤포넌트 As VBComponent
+    Dim 경로 As String
+    Dim 파일 As String, 확장자 As String
+    
+    Set 프로젝트 = ThisWorkbook.VBProject
+    
+    경로 = ThisWorkbook.Path & "\"
+    
+    For Each 콤포넌트 In 프로젝트.VBComponents
+    
+        If 콤포넌트.CodeModule.CountOfLines > _
+            콤포넌트.CodeModule.CountOfDeclarationLines Then
+    
+            Select Case 콤포넌트.Type
+            
+                Case vbext_ct_Document, vbext_ct_ClassModule
+                    확장자 = ".cls"
+                
+                Case vbext_ct_MSForm
+                    확장자 = ".frm"
+                    
+                Case Else
+                    확장자 = ".bas"
+            
+            End Select
+        
+            파일 = 콤포넌트.Name & 확장자
+            
+            If Dir(경로 & 파일) <> "" Then Kill 경로 & 파일
+            콤포넌트.Export 경로 & 파일
+    
+        End If
+    
+    Next
+
+End Sub

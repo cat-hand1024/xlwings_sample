@@ -1,0 +1,23 @@
+Private 이름() As String
+
+Private Sub UserForm_Initialize()
+
+    Dim 담당자 As Range
+    Dim 셀 As Range
+    Dim i As Integer
+
+    Set 담당자 = Range("B3", Cells(Rows.Count, "B").End(xlUp))
+
+    ReDim 이름(담당자.Count - 1)
+
+    For Each 셀 In 담당자
+
+        이름(i) = 셀.Value
+        i = i + 1
+
+    Next
+
+    lst명단.List = 이름
+    lbl결과.Caption = "개수 : " & lst명단.ListCount
+    
+End Sub

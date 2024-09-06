@@ -1,0 +1,25 @@
+Sub 숨긴시트인쇄()
+
+    Dim 시트 As Worksheet
+    Dim 이전설정 As Integer
+    
+    Application.ScreenUpdating = False
+    
+        For Each 시트 In ThisWorkbook.Worksheets
+            
+            With 시트
+                
+                If .Visible <> True Then
+                    이전설정 = .Visible
+                    .Visible = True
+                    .PrintOut
+                    .Visible = 이전설정
+                End If
+            
+            End With
+        
+        Next
+    
+    Application.ScreenUpdating = True
+    
+End Sub

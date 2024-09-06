@@ -1,0 +1,11 @@
+Sub 조건부서식(대상범위 As Range, 색상 As Integer, 밝기 As Single)
+
+    With 대상범위
+        .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+        With .FormatConditions(.FormatConditions.Count).Interior
+            .ThemeColor = 색상
+            .TintAndShade = 밝기
+        End With
+    End With
+
+End Sub

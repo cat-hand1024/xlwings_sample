@@ -1,0 +1,30 @@
+Private Sub UserForm_Initialize()
+
+    Dim 직위 As Range, 셀 As Range
+    Dim 고유항목 As Object, 키 As Variant
+    
+    Set 고유항목 = CreateObject("Scripting.Dictionary")
+    Set 직위 = Range("D3", Cells(Rows.Count, "D").End(xlUp))
+
+    For Each 셀 In 직위
+
+        If Not 고유항목.Exists(셀.Value) Then
+            고유항목.Add Key:=셀.Value, Item:=1
+        End If
+
+    Next
+
+    With cmb직위
+        
+        For Each 키 In 고유항목.Keys
+            .AddItem 키
+        Next
+    
+        .ColumnWidths = .Width
+        .ListWidth = .Width
+    
+    End With
+    
+    Set 고유항목 = Nothing
+
+End Sub

@@ -1,0 +1,11 @@
+Private Sub btn秒家_Click()
+
+    Dim 青 As Integer
+
+    For 青 = 0 To lst流盔.ListCount - 1
+    
+        lst流盔.Selected(青) = False
+    
+    Next
+
+End Sub

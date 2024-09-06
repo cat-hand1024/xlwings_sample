@@ -1,0 +1,24 @@
+Sub 다른항목체크해제()
+
+    Dim chk As CheckBox
+    Dim 확인란이름 As String
+    
+    Set chk = ActiveSheet.CheckBoxes(Application.Caller)
+    확인란이름 = chk.Name
+    Cells(chk.TopLeftCell.Row, "C").Value = --Right(확인란이름, 1)
+    
+    For Each chk In ActiveSheet.CheckBoxes
+    
+        If chk.Name <> 확인란이름 Then
+        
+            If Left(chk.Name, 6) = Left(확인란이름, 6) Then
+            
+                chk.Value = False
+            
+            End If
+        
+        End If
+    
+    Next chk
+
+End Sub

@@ -1,0 +1,26 @@
+Private Sub btn다음_Click()
+
+    Dim 이동여부 As Boolean
+    Dim 선택범위 As Range
+
+    Select Case MultiPage1.Value
+    
+        Case 0
+        
+            If Dir(txt파일.Value) <> "" Then 이동여부 = True
+        
+        Case 1
+        
+            On Error Resume Next
+        
+                Set 선택범위 = Range(ref범위.Value)
+                
+                If Err.Number = 0 Then 이동여부 = True
+                
+            On Error GoTo 0
+        
+    End Select
+
+    If 이동여부 = True Then MultiPage1.Value = MultiPage1.Value + 1
+
+End Sub

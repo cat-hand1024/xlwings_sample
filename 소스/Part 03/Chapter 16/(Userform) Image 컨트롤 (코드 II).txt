@@ -1,0 +1,22 @@
+Private Sub lst직원_Click()
+
+    Dim 직원 As Range
+    Dim 사번 As String
+    Dim 경로 As String
+    Dim 파일 As String
+
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+    사번 = 직원.Find(What:=lst직원.Value).Offset(, -1).Value
+
+    경로 = ThisWorkbook.Path & "\Image\"
+    파일 = 사번 & ".jpg"
+
+    If Dir(경로 & 파일) = "" Then 파일 = "Default.jpg"
+
+    With img사진
+        .Picture = LoadPicture(Filename:=경로 & 파일)
+        .PictureAlignment = fmPictureAlignmentCenter
+        .PictureSizeMode = fmPictureSizeModeZoom
+    End With
+
+End Sub

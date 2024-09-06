@@ -1,0 +1,33 @@
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Range, Cancel As Boolean)
+
+    Cancel = True
+
+    On Error Resume Next
+
+        Cells.FormatConditions.Delete
+
+        With Target
+            .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+            With .FormatConditions(1).Interior
+                .ThemeColor = xlThemeColorAccent1
+                .TintAndShade = 0.5
+            End With
+        End With
+        
+        With Target.EntireColumn
+            .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+            With .FormatConditions(2).Interior
+                .ThemeColor = xlThemeColorAccent1
+                .TintAndShade = 0.9
+            End With
+        End With
+        
+        With Target.EntireRow
+            .FormatConditions.Add Type:=xlExpression, Formula1:="TRUE"
+            With .FormatConditions(3).Interior
+                .ThemeColor = xlThemeColorAccent1
+                .TintAndShade = 0.9
+            End With
+        End With
+        
+End Sub

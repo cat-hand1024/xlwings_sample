@@ -1,0 +1,12 @@
+Private Sub UserForm_Initialize()
+
+    Me.Caption = "진행 상황 표시 폼"
+
+    lbl진행바.Width = 0
+    
+    With lbl백분율
+        .Left = lbl진행바.Left + lbl진행바.Width
+        .Caption = "0%"
+    End With
+    
+End Sub

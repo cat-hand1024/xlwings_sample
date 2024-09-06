@@ -1,0 +1,20 @@
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+
+    Dim 메시지 As String
+    Dim 받는사람 As String
+    
+    메시지 = "작업이 끝났습니까?" & vbCr & vbCr
+    메시지 = 메시지 & "선택 여부와 무관하게 오후 6시가 지나면 자동으로 발송됩니다."
+    
+    If Time >= TimeSerial(18, 0, 0) Or MsgBox(메시지, vbYesNo) = vbYes Then
+        
+        받는사람 = "abc@test.com"
+        
+        With ThisWorkbook
+            .Save
+            .SendMail Recipients:=받는사람, Subject:="파일 발송합니다."
+        End With
+        
+    End If
+
+End Sub

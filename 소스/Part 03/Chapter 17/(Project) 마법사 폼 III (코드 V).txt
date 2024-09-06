@@ -1,0 +1,14 @@
+﻿Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+
+    Dim 메시지 As String
+
+    If CloseMode <> vbFormCode Then
+    
+        메시지 = "종료하시려면 폼의 [취소] 또는 [마침] 버튼을 누르셔야 합니다."
+    
+        MsgBox 메시지, vbExclamation, 폼이름
+        Cancel = True
+    
+    End If
+
+End Sub

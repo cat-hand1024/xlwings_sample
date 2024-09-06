@@ -1,0 +1,29 @@
+Private Sub btn선택_Click()
+
+    Dim 입력위치 As Range
+    Dim 행 As Integer, 열 As Integer
+    
+    With lst직원
+    
+        For 행 = 0 To .ListCount - 1
+        
+            If .Selected(행) = True Then
+            
+                Set 입력위치 = Cells(Rows.Count, "I").End(xlUp).Offset(1)
+                
+                For 열 = 0 To .ColumnCount - 1
+                    입력위치.Offset(, 열).Value = .Column(열, 행)
+                Next
+                
+                With 입력위치.Resize(1, 3)
+                    .HorizontalAlignment = xlCenter
+                    .Borders.LineStyle = xlContinuous
+                End With
+            
+            End If
+        
+        Next
+    
+    End With
+
+End Sub

@@ -1,0 +1,26 @@
+Sub 저장()
+
+    Dim 기록위치 As Range
+    
+    On Error Resume Next
+    
+        Set 기록위치 = Worksheets("data").Range("B3")
+        
+        If Err.Number <> 0 Then
+            
+            MsgBox "이 매크로는 data 시트가 필요합니다."
+            Exit Sub
+        
+        End If
+        
+    On Error GoTo 0
+    
+    With 기록위치
+    
+        .Value = Range("C2").Value
+        .Offset(, 1).Value = Range("C4").Value
+        .Offset(, 2).Value = Range("C6").Value
+    
+    End With
+
+End Sub

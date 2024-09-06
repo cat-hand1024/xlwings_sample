@@ -1,0 +1,12 @@
+Sub 파일확인()
+
+    Dim 파일 As Workbook
+
+    On Error Resume Next
+        Set 파일 = Workbooks("A.xlsx")
+        
+        If Err.Number = 0 Then
+            MsgBox "파일이 열려 있습니다."
+        End If
+
+End Sub

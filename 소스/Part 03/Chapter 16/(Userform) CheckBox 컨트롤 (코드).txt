@@ -1,0 +1,24 @@
+Private Sub btn선택_Click()
+
+    Dim 컨트롤 As Control
+    Dim 머리글 As Range
+    
+    Set 머리글 = Range("E2:H2")
+    
+    머리글.Offset(1).ClearContents
+        
+    For Each 컨트롤 In UserForm1.Controls
+    
+        If TypeName(컨트롤) = "CheckBox" Then
+        
+            If 컨트롤.Value = True Then
+
+                머리글.Find(What:=컨트롤.Caption).Offset(1).Value = "O"
+            
+            End If
+        
+        End If
+    
+    Next
+
+End Sub

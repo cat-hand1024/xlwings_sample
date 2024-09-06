@@ -1,0 +1,36 @@
+Private Sub txt주민등록_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+
+    Dim 주민번호 As String
+    Dim 연대 As String
+    
+    주민번호 = txt주민등록.Value
+    
+    If Len(주민번호) = 14 And Mid(주민번호, 7, 1) = "-" Then
+            
+        Select Case Mid(주민번호, 8, 1)
+            Case 1, 2: 연대 = "19"
+            Case 3, 4: 연대 = "20"
+        End Select
+        
+        txt생년월일.Value = 연대 & Format(Left(주민번호, 6), "00-00-00")
+        
+        txt나이.Value = Year(Date) - Year(DateValue(txt생년월일.Value)) + 1
+
+        If Mid(주민번호, 8, 1) Mod 2 Then
+            opt남.Value = True
+        Else
+            opt여.Value = True
+        End If
+        
+    Else
+        
+        If Len(주민번호) > 0 Then
+        
+            txt주민등록.Value = vbNullString
+            Cancel = True
+            
+        End If
+        
+    End If
+
+End Sub

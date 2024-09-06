@@ -1,0 +1,37 @@
+Private Sub lvw결과_DblClick()
+
+    Dim 선택 As Integer
+    Dim 사번 As Range
+    Dim 직원레코드 As Range
+
+    If Not lvw결과.SelectedItem Is Nothing Then
+
+        선택 = lvw결과.SelectedItem.Text
+    
+        Set 사번 = Range("B2", Cells(Rows.Count, "B").End(xlUp))
+        Set 직원레코드 = 사번.Find(What:=선택).Resize(1, 7)
+        
+        Me.Hide
+        
+        With frm편집
+            
+            .Show vbModeless
+        
+            .txt사번.Value = 직원레코드(1)
+            .txt이름.Value = 직원레코드(2)
+            .cmb직위.Value = 직원레코드(3)
+            .txt주민등록.Value = 직원레코드(4)
+            .txt생년월일.Value = 직원레코드(5)
+            .txt나이.Value = 직원레코드(6)
+        
+            If 직원레코드(7) = "남" Then
+                .opt남.Value = True
+            Else
+                .opt여.Value = True
+            End If
+            
+        End With
+
+    End If
+
+End Sub

@@ -1,0 +1,16 @@
+Function ISFILE(파일명 As String) As Boolean
+
+    Dim 파일 As Workbook
+    Dim 확인 As Boolean
+
+    확인 = False
+
+    On Error Resume Next
+        
+        Set 파일 = Workbooks(파일명)
+        
+        If Err.Number = 0 Then 확인 = True
+        
+    ISFILE = 확인
+
+End Function

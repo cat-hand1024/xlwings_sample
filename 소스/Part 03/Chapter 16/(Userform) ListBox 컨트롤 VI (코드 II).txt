@@ -1,0 +1,10 @@
+Private Sub lst직원_Click()
+
+    With lst직원
+
+        btn위.Enabled = (.ListIndex <> 0)
+        btn아래.Enabled = (.ListIndex <> .ListCount - 1)
+
+    End With
+
+End Sub

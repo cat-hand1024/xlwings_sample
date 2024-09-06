@@ -1,0 +1,44 @@
+Private 이전합계 As Long
+
+Private Sub Worksheet_Calculate()
+
+    Dim 부분합셀 As Range
+    Dim 표시범위 As Range
+    Dim 영역 As Range, 셀 As Range
+    Dim i As Integer
+    
+    Set 부분합셀 = Range("E8")
+    
+    If 부분합셀.Value <> 이전합계 Then
+    
+        Range("D3:F6").ClearContents
+    
+        Set 표시범위 = Range("B10").CurrentRegion
+        Set 표시범위 = 표시범위.SpecialCells(xlCellTypeVisible)
+        
+        For Each 영역 In 표시범위.Areas
+                    
+            For Each 셀 In 영역.Columns(3).Cells
+            
+                If 셀.Row > 10 Then
+        
+                    Range("D3").Offset(i).Value = 셀.Value
+                    Range("E3:F3").Offset(i).Value = 셀.Offset(, 2).Value
+                    
+                    i = i + 1
+                    
+                    If i = 4 Then GoTo 순환종료
+                    
+                End If
+                                
+            Next 셀
+                
+        Next 영역
+        
+순환종료:
+        
+        이전합계 = 부분합셀.Value
+        
+    End If
+
+End Sub

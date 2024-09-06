@@ -1,0 +1,18 @@
+Private 이전시트수 As Integer
+
+Private Sub Workbook_SheetActivate(ByVal Sh As Object)
+
+    If 이전시트수 > 0 Then
+    
+        If 이전시트수 < Worksheets.Count Then
+        
+            Call 프로시저
+            
+        End If
+    
+    End If
+    
+
+    이전시트수 = Worksheets.Count
+
+End Sub

@@ -1,0 +1,17 @@
+Private Sub Worksheet_Deactivate()
+
+    Select Case ActiveSheet.Name
+    
+        Case "Sheet1"
+    
+            Range("I6").Value = Range("I6").Value + 1
+        
+        Case "Sheet2"
+        
+            Range("I7").Value = Range("I7").Value + 1
+            
+        Case Else
+    
+    End Select
+    
+End Sub

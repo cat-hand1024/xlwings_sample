@@ -1,0 +1,40 @@
+Private Sub Workbook_SheetDeactivate(ByVal Sh As Object)
+
+    Dim 새시트 As Worksheet
+    Dim 이전시트 As Worksheet
+    Dim 이전열위치 As Long
+    Dim 이전행위치 As Long
+    Dim 선택범위주소 As String
+    
+    Set 새시트 = ActiveSheet
+    Set 이전시트 = Sh
+    
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+    
+        이전시트.Activate
+        
+        With ActiveWindow
+            
+            이전열위치 = .ScrollColumn
+            이전행위치 = .ScrollRow
+        
+        End With
+        
+        선택범위주소 = Selection.Address
+        
+        새시트.Activate
+        
+        With ActiveWindow
+            
+            .ScrollColumn = 이전열위치
+            .ScrollRow = 이전행위치
+        
+        End With
+        
+        Range(선택범위주소).Select
+        
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+
+End Sub

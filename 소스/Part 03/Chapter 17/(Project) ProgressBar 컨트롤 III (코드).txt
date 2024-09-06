@@ -1,0 +1,60 @@
+Sub 통합()
+
+    Dim 시트 As Worksheet
+    Dim 품번 As Range, 셀 As Range
+    Dim 제품레코드 As Range
+    Dim 복사위치 As Range
+    Dim 전체건수 As Long
+    Dim 처리건수 As Long
+    Dim 진행율 As Single
+        
+    For Each 시트 In Worksheets
+        
+        If 시트.Name <> ActiveSheet.Name Then
+        
+            전체건수 = 전체건수 + 시트.Range("B2").CurrentRegion.Rows.Count - 1
+            
+        End If
+    
+    Next
+    
+    frm진행상황.Show vbModeless
+
+    For Each 시트 In Worksheets
+        
+        If 시트.Name <> ActiveSheet.Name Then
+            
+            Set 품번 = 시트.Range("B3", 시트.Cells(Rows.Count, "B").End(xlUp))
+            
+            For Each 셀 In 품번
+            
+                If Columns(2).Find(What:=셀.Value, LookAt:=xlWhole) Is Nothing Then
+            
+                    Set 제품레코드 = 셀.Resize(1, 4)
+                    Set 복사위치 = Cells(Rows.Count, "B").End(xlUp).Offset(1)
+                    
+                    제품레코드.Copy 복사위치
+        
+                End If
+        
+                처리건수 = 처리건수 + 1
+                진행율 = 처리건수 / 전체건수
+            
+                With frm진행상황
+                    .pgb진행.Value = 진행율 * 100
+                    .lbl백분율.Caption = Format(진행율, "0%")
+                End With
+            
+                DoEvents
+                
+            Next
+            
+        End If
+    
+    Next
+    
+    Range("B2").CurrentRegion.Sort Key1:=Range("B3"), Order1:=xlAscending, Header:=xlYes
+        
+    Application.OnTime Now + TimeSerial(0, 0, 1), "폼닫기"
+    
+End Sub

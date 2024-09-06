@@ -1,0 +1,14 @@
+Private Sub UserForm_Initialize()
+
+    With lvwÁ÷¿ø
+    
+        .View = lvwReport
+        .AllowColumnReorder = True
+        .FullRowSelect = True
+        .Gridlines = True
+        .HideSelection = False
+        .LabelEdit = lvwManual
+    
+    End With
+
+End Sub

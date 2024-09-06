@@ -1,0 +1,14 @@
+Private Sub Workbook_BeforePrint(Cancel As Boolean)
+
+    Dim 가로구분선 As HPageBreak
+
+    Cells.FormatConditions.Delete
+
+    For Each 가로구분선 In ActiveSheet.HPageBreaks
+
+        Call 테두리서식(가로구분선.Location.Offset(-1).Columns("A:H"), xlBottom)
+        Call 테두리서식(가로구분선.Location.Columns("A:H"), xlTop)
+
+    Next
+    
+End Sub

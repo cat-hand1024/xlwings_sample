@@ -1,0 +1,5 @@
+Private Sub Worksheet_Activate()
+
+    Range("F6").Value = Range("F6").Value + 1
+
+End Sub

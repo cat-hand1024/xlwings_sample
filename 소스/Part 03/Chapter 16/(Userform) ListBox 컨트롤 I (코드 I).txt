@@ -1,0 +1,17 @@
+﻿Private Sub UserForm_Initialize()
+
+    Dim 표 As Range
+
+    Set 표 = Range("B3", Cells(Rows.Count, "D").End(xlUp))
+
+    With lst직원
+
+        .ColumnCount = 3
+        .ColumnHeads = True
+        .ColumnWidths = "30;50;50"
+
+        .RowSource = 표.Address
+
+    End With
+
+End Sub

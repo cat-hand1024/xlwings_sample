@@ -1,0 +1,51 @@
+Sub 분류별시트()
+
+    Dim 현재시트 As Worksheet
+    Dim 분류 As Range, 셀 As Range
+    Dim 제품레코드 As Range, 복사위치 As Range
+    Dim 시트이름 As String
+        
+    Set 현재시트 = ActiveSheet
+    Set 분류 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+        
+    For Each 셀 In 분류
+    
+        시트이름 = 셀.Value
+            
+        If Not IsSheet(시트이름) Then
+        
+            Worksheets.Add After:=Sheets(Sheets.Count)
+            ActiveSheet.Name = 시트이름
+        
+            With 현재시트
+                
+                .Range("B2:E2").Copy
+                Range("B2").PasteSpecial xlPasteAll
+                Range("B2").PasteSpecial xlPasteColumnWidths
+                
+                Range("B3").Select
+                
+                Application.CutCopyMode = False
+                
+                .Activate
+                
+            End With
+        
+        End If
+        
+        With Worksheets(시트이름)
+        
+            If .Columns(2).Find(셀.Offset(0, -1)) Is Nothing Then
+            
+                Set 제품레코드 = 셀.Offset(0, -1).Resize(1, 4)
+                Set 복사위치 = .Cells(Rows.Count, "B").End(xlUp).Offset(1)
+                
+                제품레코드.Copy 복사위치
+            
+            End If
+        
+        End With
+        
+    Next
+    
+End Sub

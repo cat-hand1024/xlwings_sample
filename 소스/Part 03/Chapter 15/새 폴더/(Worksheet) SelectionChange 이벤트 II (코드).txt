@@ -1,0 +1,11 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    If Not Intersect(Target, ActiveSheet.UsedRange) Is Nothing Then
+    
+        If Application.CutCopyMode >= 1 Then
+            Application.CutCopyMode = False
+        End If
+    
+    End If
+
+End Sub

@@ -1,0 +1,25 @@
+Private Sub btn선택_Click()
+
+    Dim 선택항목 As Integer
+    Dim 입력위치 As Range
+
+    선택항목 = lst직원.ListIndex
+
+    If 선택항목 > -1 Then
+
+        Set 입력위치 = Cells(Rows.Count, "I").End(xlUp).Offset(1)
+
+        With 입력위치
+            .Value = lst직원.List(선택항목, 0)
+            .Offset(, 1).Value = lst직원.List(선택항목, 1)
+            .Offset(, 2).Value = lst직원.List(선택항목, 2)
+        End With
+
+        With 입력위치.Resize(1, 3)
+            .HorizontalAlignment = xlCenter
+            .Borders.LineStyle = xlContinuous
+        End With
+
+    End If
+
+End Sub

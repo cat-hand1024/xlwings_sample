@@ -1,0 +1,28 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Dim 유효성검사 As Range
+    Dim 목록 As String
+
+    If Target.Count > 1 Then Exit Sub
+
+    Set 유효성검사 = Range("C6", Cells(Rows.Count, "B").End(xlUp).Offset(, 1))
+
+    If Not Intersect(Target, 유효성검사) Is Nothing Then
+
+        목록 = 목록만들기(유효성검사)
+
+        With Target.Validation
+
+            .Delete
+
+            If Len(목록) > 0 Then
+
+                .Add Type:=xlValidateList, Formula1:=목록
+
+            End If
+
+        End With
+
+    End If
+
+End Sub

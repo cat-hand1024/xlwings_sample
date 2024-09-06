@@ -1,0 +1,6 @@
+Private Sub txt검색_Change()
+
+    lst명단.List = Filter(이름, txt검색.Text, True)
+    lbl결과.Caption = "개수 : " & lst명단.ListCount
+
+End Sub

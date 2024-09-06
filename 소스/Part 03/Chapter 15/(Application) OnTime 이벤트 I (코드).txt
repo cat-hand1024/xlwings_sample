@@ -1,0 +1,18 @@
+Sub 매크로실행예약()
+
+    Dim 예약시간 As Date
+
+    예약시간 = Now + TimeSerial(0, 1, 0)
+
+    Application.OnTime 예약시간, "안내메시지"
+    
+    Do
+    
+        Application.StatusBar = Format(예약시간 - Now, "hh:mm:ss")
+        DoEvents
+        
+    Loop While Now < 예약시간
+    
+    Application.StatusBar = False
+    
+End Sub

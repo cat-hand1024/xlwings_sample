@@ -1,0 +1,20 @@
+Private Sub UserForm_Initialize()
+
+    Me.Caption = "검색 폼"
+    
+    With lvw결과
+        .View = lvwReport
+        .AllowColumnReorder = True
+        .FullRowSelect = True
+        .Gridlines = True
+        .HideSelection = False
+        .LabelEdit = lvwManual
+        
+        With .ColumnHeaders
+            .Add Key:="사번", Text:="사번", Width:=35, Alignment:=lvwColumnLeft
+            .Add Key:="이름", Text:="이름", Width:=65, Alignment:=lvwColumnCenter
+            .Add Key:="직위", Text:="직위", Width:=45, Alignment:=lvwColumnCenter
+        End With
+    End With
+    
+End Sub

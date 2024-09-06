@@ -1,0 +1,27 @@
+Function 입력완료(폼 As MSForms.UserForm) As Boolean
+
+    Dim 컨트롤 As MSForms.Control
+    Dim 체크 As Boolean
+    
+    체크 = True
+    
+    For Each 컨트롤 In 폼.Controls
+    
+        Select Case TypeName(컨트롤)
+        
+            Case "TextBox", "ComboBox"
+            
+                If Len(컨트롤.Value) = 0 Then
+                    체크 = False
+                    Exit For
+                End If
+                
+            Case Else
+            
+        End Select
+    
+    Next
+    
+    입력완료 = 체크
+
+End Function

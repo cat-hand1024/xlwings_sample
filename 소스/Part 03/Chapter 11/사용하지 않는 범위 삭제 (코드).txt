@@ -1,0 +1,51 @@
+Sub 사용하지않는범위삭제()
+
+    Dim 사용범위 As Range
+    Dim 삭제열 As Long, 삭제행 As Long
+    Dim c As Long, r As Long
+    
+    Set 사용범위 = ActiveSheet.UsedRange
+
+    For c = 사용범위.Columns.Count To 1 Step -1
+    
+        If WorksheetFunction.CountA(사용범위.Columns(c).EntireColumn) = 0 Then
+    
+            사용범위.Columns(c).EntireColumn.Delete
+            삭제열 = 삭제열 + 1
+        
+        Else
+    
+            Exit For
+    
+        End If
+        
+    Next c
+
+    For r = 사용범위.Rows.Count To 1 Step -1
+    
+        If WorksheetFunction.CountA(사용범위.Rows(r).EntireRow) = 0 Then
+    
+            사용범위.Rows(r).EntireRow.Delete
+            삭제행 = 삭제행 + 1
+        
+        Else
+    
+            Exit For
+    
+        End If
+        
+    Next r
+
+    If 삭제열 + 삭제행 > 0 Then
+    
+        MsgBox "다음과 같이 삭제했습니다." & vbCr & vbCr & _
+               "* 삭제된 열 수 : " & 삭제열 & " 열" & vbCr & _
+               "* 삭제된 행 수 : " & 삭제행 & " 행"
+    
+    Else
+    
+        MsgBox "삭제할 행(또는 열)이 존재하지 않습니다."
+    
+    End If
+    
+End Sub

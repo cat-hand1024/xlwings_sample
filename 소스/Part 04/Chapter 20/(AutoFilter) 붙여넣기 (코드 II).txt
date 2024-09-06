@@ -1,0 +1,31 @@
+Sub 자동필터영역으로붙여넣기()
+     
+    Dim 복사범위 As Range
+    Dim 붙여넣을범위 As Range
+    Dim 영역 As Range, 셀 As Range
+    Dim i As Integer
+    
+    Set 복사범위 = Range("F3", Range("F8").End(xlUp))
+    Set 붙여넣을범위 = Range("F11", Cells(Rows.Count, "F").End(xlUp))
+    Set 붙여넣을범위 = 붙여넣을범위.SpecialCells(xlCellTypeVisible)
+    
+    Application.EnableEvents = False
+    
+        For Each 영역 In 붙여넣을범위.Areas
+        
+            For Each 셀 In 영역.Cells
+        
+                i = i + 1
+                복사범위.Cells(i).Copy Destination:=셀
+                
+                If i = 4 Then GoTo 순환종료
+            
+            Next 셀
+                
+        Next 영역
+    
+순환종료:
+    
+    Application.EnableEvents = True
+    
+End Sub

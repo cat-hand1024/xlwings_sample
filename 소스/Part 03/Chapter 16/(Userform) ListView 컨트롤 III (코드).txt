@@ -1,0 +1,9 @@
+Private Sub lvw직원_ColumnClick(ByVal ColumnHeader As MSComctlLib.ColumnHeader)
+
+    With lvw직원
+        .SortKey = ColumnHeader.Index - 1
+        .SortOrder = IIf(.SortOrder=lvwAscending, lvwDescending, lvwAscending)
+        .Sorted = True
+    End With
+    
+End Sub

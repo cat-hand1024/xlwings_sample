@@ -1,0 +1,15 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    If Target.Count > 1 Then Exit Sub
+
+    If Not Intersect(Target, Range("B3:B15")) Is Nothing Then
+
+        If MsgBox("옮기시겠습니까?", vbYesNo) = vbYes Then
+
+            Target.Copy Cells(Rows.Count, "D").End(xlUp).Offset(1)
+
+        End If
+
+    End If
+
+End Sub

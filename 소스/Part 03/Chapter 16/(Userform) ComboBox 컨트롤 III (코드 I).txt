@@ -1,0 +1,31 @@
+﻿Private Sub UserForm_Initialize()
+
+    Dim 부서 As Range, 셀 As Range
+    Dim 고유항목 As New Collection, 항목 As Variant
+    
+    Set 부서 = Range("D3", Cells(Rows.Count, "D").End(xlUp))
+
+    On Error Resume Next
+    
+        For Each 셀 In 부서
+            
+            고유항목.Add Item:=셀.Value, Key:=셀.Value
+        
+        Next
+
+    On Error GoTo 0
+
+    With cmb부서
+        
+        For Each 항목 In 고유항목
+        
+            .AddItem 항목
+        
+        Next
+    
+        .ColumnWidths = .Width
+        .ListWidth = .Width
+    
+    End With
+
+End Sub

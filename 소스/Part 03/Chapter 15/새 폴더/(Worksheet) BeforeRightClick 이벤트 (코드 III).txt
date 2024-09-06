@@ -1,0 +1,13 @@
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Range, Cancel As Boolean)
+
+    Cancel = True
+
+    On Error Resume Next
+
+        Cells.FormatConditions.Delete
+
+        Call 조건부서식(Target, xlThemeColorAccent1, 0.5)
+        Call 조건부서식(Target.EntireColumn, xlThemeColorAccent1, 0.9)
+        Call 조건부서식(Target.EntireRow, xlThemeColorAccent1, 0.9)
+
+End Sub

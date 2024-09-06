@@ -1,0 +1,32 @@
+Private Sub Chart_MouseMove(ByVal Button As Long, ByVal Shift As Long, ByVal x As Long, ByVal y As Long)
+
+    Dim 계열 As Series, 선택계열 As Series
+    Dim 차트요소 As Long
+    Dim 계열번호 As Long, 계열요소번호 As Long
+
+    ActiveChart.GetChartElement x, y, 차트요소, 계열번호, 계열요소번호
+
+    If 차트요소 = xlSeries Then
+
+        Set 선택계열 = ActiveChart.SeriesCollection(계열번호)
+
+        For Each 계열 In ActiveChart.SeriesCollection
+
+            If 계열.Name <> 선택계열.Name Then
+
+                계열.Format.Line.Weight = 2.5
+                계열.HasDataLabels = False
+
+            Else
+
+                계열.Format.Line.Weight = 5
+                계열.HasDataLabels = True
+                계열.DataLabels.Position = xlLabelPositionAbove
+
+            End If
+
+        Next
+
+    End If
+
+End Sub

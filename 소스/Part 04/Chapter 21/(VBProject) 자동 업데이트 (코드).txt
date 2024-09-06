@@ -1,0 +1,35 @@
+Private Sub Workbook_Open()
+
+    Dim 프로젝트 As VBProject
+    Dim 경로 As String
+    Dim 모듈 As String
+    Dim 모듈파일 As String
+    Dim 메시지 As String
+
+    경로 = ThisWorkbook.Path & "\"
+    모듈 = "modMain"
+    모듈파일 = 경로 & 모듈 & ".bas"
+    
+    If Dir(모듈파일) <> "" Then
+    
+        메시지 = "새로운 업데이트가 발견되었습니다." & vbCr & vbCr
+        메시지 = 메시지 & "업데이트 할까요?"
+    
+        If MsgBox(메시지, vbYesNo, "자동업데이트") = vbYes Then
+    
+            Set 프로젝트 = ThisWorkbook.VBProject
+                
+            With 프로젝트.VBComponents
+            
+                .Remove 프로젝트.VBComponents(모듈)
+                .Import Filename:=모듈파일
+            
+            End With
+    
+            Kill 모듈파일
+    
+        End If
+    
+    End If
+    
+End Sub

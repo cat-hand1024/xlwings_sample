@@ -1,0 +1,31 @@
+Sub 로또번호()
+
+    Dim 로또(5) As Integer
+    Dim i As Integer
+    
+    로또(0) = 8
+    로또(1) = 21
+    로또(2) = 25
+    로또(3) = 39
+    로또(4) = 40
+    로또(5) = 44
+
+    Range("B3:G3").Value = 로또
+
+End Sub
+
+Sub 로또번호()
+
+    Dim 로또(1 To 6) As Integer
+    Dim i As Integer
+    
+    로또(1) = 8
+    로또(2) = 21
+    로또(3) = 25
+    로또(4) = 39
+    로또(5) = 40
+    로또(6) = 44
+
+    Range("B3:G3").Value = 로또
+
+End Sub

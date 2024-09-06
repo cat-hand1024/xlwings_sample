@@ -1,0 +1,20 @@
+Private Sub btn입력_Click()
+
+    Dim 입력위치 As Range
+    
+    If Len(txt이름.Value) > 0 Then
+        
+        If Len(txt직위.Value) > 0 Then
+    
+            Set 입력위치 = Cells(Rows.Count, "B").End(xlUp).Offset(1)
+        
+            With 입력위치
+                .Value = txt이름.Value
+                .Offset(, 1).Value = txt직위.Value
+            End With
+        
+        End If
+        
+    End If
+
+End Sub

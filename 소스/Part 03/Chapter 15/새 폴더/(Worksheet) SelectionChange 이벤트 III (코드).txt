@@ -1,0 +1,21 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Dim 입력범위 As Range
+    
+    Set 입력범위 = Range("E4", Cells(Rows.Count, "B").End(xlUp).Offset(,3))
+
+    With Calendar1
+        
+        If Not Intersect(Target, 입력범위) Is Nothing Then
+            .Value = Date
+            .Top = Target.Top
+            .Left = Target.Offset(, 1).Left + 5
+            .Height = 100
+            .Width = 150
+            .Visible = True
+        Else
+            .Visible = False
+        End If
+    End With
+
+End Sub

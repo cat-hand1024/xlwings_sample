@@ -1,0 +1,51 @@
+Private Sub btn검색_Click()
+
+    Dim 이름 As Range
+    Dim 찾은이름 As Range
+    Dim 직원레코드 As Range, 셀 As Range
+    Dim r As Integer, c As Integer
+    Dim 키워드 As String
+    Dim 첫번째위치 As String
+
+    키워드 = txt검색.Value
+
+    If Len(키워드) > 0 Then
+    
+        Set 이름 = Range("B2").CurrentRegion.Columns(2)
+        Set 찾은이름 = 이름.Find(What:=키워드, LookAt:=xlPart)
+        
+        If Not 찾은이름 Is Nothing Then
+        
+            첫번째위치 = 찾은이름.Address
+            lvw결과.ListItems.Clear
+            
+            Do
+                
+                If 찾은이름.Row > 2 Then
+                
+                    With lvw결과
+                    
+                        .ListItems.Add Text:=찾은이름.Offset(, -1).Value
+                        r = r + 1
+                        
+                        For c = 1 To 2
+                            .ListItems(r).SubItems(c) = 찾은이름.Offset(, c - 1).Value
+                        Next
+                    
+                    End With
+                                
+                End If
+                                
+                Set 찾은이름 = 이름.FindNext(찾은이름)
+                
+            Loop Until 찾은이름.Address = 첫번째위치
+            
+        Else
+            
+            lvw결과.ListItems.Clear
+                
+        End If
+        
+    End If
+
+End Sub

@@ -1,0 +1,30 @@
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+
+    Dim ¿Ã∏ß As Name
+    Dim ºø As Range
+    
+    Const xlRed As Integer = 3
+    Const xlBlack As Integer = 1
+    
+    For Each ¿Ã∏ß In ThisWorkbook.Names
+        
+        If ¿Ã∏ß.Name Like "input*" Then
+    
+            Set ºø = ¿Ã∏ß.RefersToRange
+                    
+            If IsEmpty(ºø) Then
+        
+                ºø.Offset(, -1).MergeArea.Font.ColorIndex = xlRed
+                Cancel = True
+        
+            Else
+            
+                ºø.Offset(, -1).MergeArea.Font.ColorIndex = xlBlack
+        
+            End If
+    
+        End If
+    
+    Next
+    
+End Sub

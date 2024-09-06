@@ -1,0 +1,29 @@
+Private Sub btn입력_Click()
+
+    Dim 입력위치 As Range
+    
+    If 입력완료(Me) = True Then
+
+        Set 입력위치 = Cells(Rows.Count, "B").End(xlUp).Offset(1)
+        
+        With 입력위치
+        
+            .Offset(0, 0).Value = Int(txt사번.Value)
+            .Offset(0, 1).Value = txt이름.Value
+            .Offset(0, 2).Value = cmb직위.Value
+            .Offset(0, 3).Value = txt주민등록.Value
+            .Offset(0, 4).Value = DateValue(txt생년월일.Value)
+            .Offset(0, 5).Value = Int(txt나이.Value)
+            .Offset(0, 6).Value = IIf(opt남.Value, "남", "여")
+            
+            .Offset(-1).Resize(1, 7).Copy
+            .Resize(1, 7).PasteSpecial xlPasteFormats
+            .Select
+            
+            Application.CutCopyMode = False
+                            
+        End With
+           
+    End If
+    
+End Sub

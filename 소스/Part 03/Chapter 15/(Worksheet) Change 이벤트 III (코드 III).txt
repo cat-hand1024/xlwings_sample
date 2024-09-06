@@ -1,0 +1,20 @@
+Sub 마지막작업취소()
+
+    Dim 마지막값 As Range
+    Dim 누계 As Range
+
+    Set 마지막값 = Cells(Rows.Count, "G").End(xlUp)
+    Set 누계 = Range("C3")
+
+    If 마지막값.CurrentRegion.Rows.Count > 1 Then
+
+        누계.Value = 누계.Value - 마지막값.Value
+        마지막값.Resize(1, 2).Delete Shift:=xlUp
+
+    Else
+
+        MsgBox "이전 값이 존재하지 않습니다."
+
+    End If
+
+End Sub

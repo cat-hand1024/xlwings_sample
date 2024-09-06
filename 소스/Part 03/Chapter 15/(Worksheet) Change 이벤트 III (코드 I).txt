@@ -1,0 +1,27 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim 입력 As Range
+    Dim 누계 As Range
+    Dim 히스토리 As Range
+    
+    Set 입력 = Range("B3")
+    Set 누계 = Range("C3")
+    
+    If Not Intersect(Target, 입력) Is Nothing Then
+        
+        If Len(입력.Value) = 0 Then Exit Sub
+        
+        If IsNumeric(입력.Value) Then
+        
+            Application.EnableEvents = False
+        
+                누계.Value = 누계.Value + 입력.Value
+                입력.ClearContents
+            
+            Application.EnableEvents = True
+
+        End If
+        
+    End If
+  
+End Sub

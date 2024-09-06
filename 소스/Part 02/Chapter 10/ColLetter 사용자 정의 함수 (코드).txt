@@ -1,0 +1,8 @@
+Function ColLetter(열번호 As Integer) As String
+
+    Dim 임시셀주소 As String
+    
+    임시셀주소 = Cells(1, 열번호).Address(False, False)
+    ColLetter = Left(임시셀주소, Len(임시셀주소) - 1)
+
+End Function

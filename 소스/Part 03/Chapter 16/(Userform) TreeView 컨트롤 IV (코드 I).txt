@@ -1,0 +1,25 @@
+Private Sub btn퇴사_Click()
+
+    Dim 직원 As Range
+    Dim 선택항목 As Node
+    
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+    Set 선택항목 = tvw직원.SelectedItem
+
+    If Not 선택항목.Parent Is Nothing Then
+
+        If MsgBox("선택한 직원을 퇴사 처리할까요?", vbYesNo) = vbYes Then
+        
+            직원.Find(What:=선택항목.Text).Offset(, 3).Value = Date
+            선택항목.Parent.Selected = True
+            txt입사일.Value = Empty
+            
+            tvw직원.Nodes.Remove 선택항목.Index
+            
+            lbl직원수.Caption = "직원 수 : " & tvw직원.SelectedItem.Children
+            
+        End If
+
+    End If
+
+End Sub

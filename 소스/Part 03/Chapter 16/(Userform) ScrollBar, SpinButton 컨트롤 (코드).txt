@@ -1,0 +1,15 @@
+Private Sub UserForm_Initialize()
+
+    With scrÅ°
+        .Max = 240
+        .Min = 120
+        .LargeChange = 10
+        .SmallChange = 1
+    End With
+
+    With spn¸ö¹«°Ô
+        .Max = 100
+        .Min = 50
+    End With
+
+End Sub

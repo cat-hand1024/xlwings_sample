@@ -1,0 +1,46 @@
+Private Sub UserForm_Initialize()
+    
+    Dim 경로 As String
+    Dim 직원 As Range, 셀 As Range
+
+    경로 = ThisWorkbook.Path
+    Set 직원 = Range("C3", Cells(Rows.Count, "C").End(xlUp))
+    
+    With iml아이콘.ListImages
+
+        .Add Key:="Image1", Picture:=LoadPicture(Filename:=경로 & "\tag-top.jpg")
+        .Add Key:="Image2", Picture:=LoadPicture(Filename:=경로 & "\tag-sub.jpg")
+
+    End With
+
+    With tvw직원
+
+        .Indentation = 14
+        .BorderStyle = ccFixedSingle
+        .LineStyle = tvwRootLines
+
+        Set .ImageList = iml아이콘
+
+    End With
+    
+    With tvw직원.Nodes
+
+        .Add Key:="부장", Text:="부장", Image:="Image1"
+        .Add Key:="차장", Text:="차장", Image:="Image1"
+        .Add Key:="과장", Text:="과장", Image:="Image1"
+        .Add Key:="대리", Text:="대리", Image:="Image1"
+        .Add Key:="주임", Text:="주임", Image:="Image1"
+        .Add Key:="사원", Text:="사원", Image:="Image1"
+
+        For Each 셀 In 직원
+
+            .Add Relative:=셀.Offset(, 1).Value, _
+                 Relationship:=tvwChild, _
+                 Text:=셀.Value, _
+                 Image:="Image2"
+
+        Next
+
+    End With
+    
+End Sub

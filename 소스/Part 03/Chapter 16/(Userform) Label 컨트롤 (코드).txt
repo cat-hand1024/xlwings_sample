@@ -1,0 +1,12 @@
+Private Sub btnHyperlink_Click()
+
+    With lblHyperlink
+        .Caption = txtURL.Value
+        .TextAlign = fmTextAlignCenter
+        .ForeColor = RGB(0, 0, 255)
+        .Font.Underline = True
+        .MousePointer = fmMousePointerCustom
+        .MouseIcon = LoadPicture(ThisWorkbook.Path & "\Hand.cur")
+    End With
+
+End Sub

@@ -1,0 +1,24 @@
+Private Sub UserForm_Initialize()
+    
+    Dim 경로 As String
+    
+    경로 = ThisWorkbook.Path
+    
+    With iml아이콘.ListImages
+
+        .Add Key:="Image1", Picture:=LoadPicture(Filename:=경로 & "\tag-top.jpg")
+        .Add Key:="Image2", Picture:=LoadPicture(Filename:=경로 & "\tag-sub.jpg")
+
+    End With
+
+    With tvw직원
+
+        .Indentation = 20
+        .BorderStyle = ccFixedSingle
+        .LineStyle = tvwTreeLines
+
+        Set .ImageList = iml아이콘
+
+    End With
+
+End Sub

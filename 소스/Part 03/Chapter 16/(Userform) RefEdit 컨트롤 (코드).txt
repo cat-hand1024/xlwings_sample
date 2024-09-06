@@ -1,0 +1,18 @@
+Private Sub btn요약_Click()
+
+    Dim 선택범위 As Range
+    Dim 합계 As Double
+    
+    On Error Resume Next
+        Set 선택범위 = Range(ref범위.Text)
+        
+        If Err.Number <> 0 Then Exit Sub
+    On Error GoTo 0
+    
+    합계 = WorksheetFunction.Sum(선택범위)
+    
+    lbl결과.Caption = "합계 : " & Format(합계, "#,###")
+    
+    ref범위.SetFocus
+    
+End Sub

@@ -1,0 +1,13 @@
+﻿Private Sub btn취소_Click()
+
+    Dim 메시지 As String
+    
+    메시지 = 폼이름 & "를 취소하시겠습니까?"
+    
+    If MsgBox(메시지, vbQuestion + vbYesNo, 폼이름) = vbYes Then
+
+        Unload Me
+        
+    End If
+
+End Sub
